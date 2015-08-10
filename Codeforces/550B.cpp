@@ -7,13 +7,11 @@ int a[17];
 int cnt=0;
 
 void solve(int idx,int total,int minDiff,int maxDiff){
-	printf("solve(%d,%d,%d,%d)\n",idx,total,minDiff,maxDiff);
 	if(idx==n){
 		if(total==0)return;
 
 		if(total>=l && total<=r && maxDiff-minDiff>=x)
 			cnt++;
-		cout<<"return"<<endl;
 		return;
 	}
 
