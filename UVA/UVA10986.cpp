@@ -5,6 +5,13 @@ using namespace std;
 //CLASSIC DIJKSTRA'S ALGORITHM.
 //STRAIGHTFORWARD IMPLEMENTATION.
 
+class Compare{
+public:
+	bool operator()(pair<int,int> p1,pair<int,int> p2){
+		return p1.first>p2.first;
+	}
+};
+
 int main(){
 	int cases;
 	cin>>cases;
@@ -22,7 +29,7 @@ int main(){
 			vec[v1].push_back(make_pair(u1,w));
 		}
 		dist[s]=0;
-		priority_queue<pair<int,int>, vector<pair<int,int> >, greater<pair<int,int> > > pq;
+		priority_queue<pair<int,int>, vector<pair<int,int> >, Compare > pq;
 		pq.push(make_pair(0,s));
 		while(!pq.empty()){
 			pair<int,int> front= pq.top(); pq.pop();
