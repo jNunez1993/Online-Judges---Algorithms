@@ -24,74 +24,22 @@
 #include <iterator>
 using namespace std;
 
-void swap(char &a){
-	a= a=='1'? '0':'1';
-}
-
-
 int main(){
 	int n;
 	cin>>n;
-	string s[n];
+	string grid[n];
+
+	for(int i=0;i<n;i++)cin>>grid[i];
+
+	int ans=0;
 	for(int i=0;i<n;i++){
-		cin>>s[i];
-	}
-	char grid[n][n];
-	for(int i=0;i<n;i++){
+		int cnt=0;
 		for(int j=0;j<n;j++){
-			if(i<n && j<n){
-				grid[i][j]=s[i][j];
-			}
+			if(grid[i]==grid[j])cnt++;
 		}
-	}
-	int col[n];
-	int evenCol[n];
-	int min=n/2;
-	int cnt=0;
-	int evenColIndex=0;
-	int index=0;
-	for(int i=0;i<n;i++){
-		for(int j=0;j<n;j++){
-			if(grid[j][i]=='1')cnt++;
-		}
-		if(cnt<min){col[index]=i; index++;}
-		if(cnt==min){
-			evenCol[evenColIndex]=i;
-			evenColIndex++;
-		}
-		cnt=0;
-	}
-	//swaps col with mins
-	for(int i=0;i<index;i++){
-		int c=col[i];
-		for(int j=0;j<n;j++){
-			swap(grid[j][c]);
-		}
+		ans=std::max(ans,cnt);
 	}
 
-	int times=(int)pow(2,evenColIndex);
-	for(int i=0;i<times;i++){
-		for(int j=0;j<evenColIndex;j++){
-			
-			if(j & i){
-				swap(grid[j][c])
-			}
-		}
-	}
-
-
-
-
-
-	int rowcnt=0;
-	for(int i=0;i<n;i++){
-		for(int j=0;j<n;j++){
-			if(grid[i][j]!='1')
-				break;
-			if(j==n-1)rowcnt++;
-		}
-	}
-
-	cout<<rowcnt<<endl;
+	cout<<ans<<endl;
 
 }
