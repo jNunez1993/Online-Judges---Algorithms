@@ -7,8 +7,6 @@ def main():
         if (ord(x[i]) - ord(y[i])) < 0:
             print(-1)
             return
-        elif (ord(x[i]) - ord(y[i])) == 0:
-            z += x[i]
         else:
             z += y[i]
     print(z)
