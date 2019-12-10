@@ -1,28 +1,20 @@
-#include <iostream>
-#include <string>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
     int n;
     cin>>n;
-    string* l = new string[n];
-
+    string s[n];
+    map<string, int> m;
     for (int i = 0; i < n; i++) {
-        cin>>l[i];
-    }
-    sort(l, l+n);
-    int t1 = 1;
-    int idx = 0;
-    for (int i = 1; i < n; i++) {
-        if (l[i] != l[i-1]) {
-            idx = i;
-            break;
-        }
-        t1++;
+        cin>>s[i];
+        m[s[i]]++;
     }
 
-    if (t1 > n-t1) cout<<l[0]<<endl;
-    else cout<<l[idx]<<endl;
+    sort(s, s+n);
+    string one = s[0];
+    string two = s[n-1];
 
+    if (m[one] > m[two]) cout<<one<<endl;
+    else cout<<two<<endl;
 }
