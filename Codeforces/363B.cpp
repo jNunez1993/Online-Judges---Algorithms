@@ -1,27 +1,33 @@
-#include <bits/stdc++.h>
-#define _ ios_base::sync_with_stdio(0);cin.tie(0);
-#define INF 2147483647
+#include <iostream>
+#include <algorithm>
 using namespace std;
-int n,k;
-int a[150005];
 
-int main(){
-	cin>>n>>k;
-	for(int i=1;i<=n;i++)cin>>a[i];
-	int dp[n+1]={0};
-	dp[1]=a[1];
-	for(int i=2;i<=k;i++){
-		dp[i]+=a[i]+dp[i-1];
-	}
-	int min=dp[k];
-	int idx=1;
-	for(int i=k+1;i<=n;i++){
-		dp[i]=dp[i-1]-a[i-k]+a[i];
-		if(dp[i]<min){
-			idx=i-k+1;
-			min=dp[i];
-		}
-	}
-	cout<<idx<<endl;
+int main() {
+    int n, k;
+    cin>>n>>k;
+    int a[n];
+    int pre[n];
+    for (int i = 0; i < n; i++) {
+        cin>>a[i];
+        if (i == 0) pre[i] = a[i];
+        else pre[i] = pre[i-1] + a[i];
+    }
+
+    int mn = 2e9;
+    int ans = 0;
+    for (int i = 0; i < n-k+1; i++) {
+        int left = 0;
+        if (i != 0) {
+            left = pre[i-1];
+        }
+
+        int val = pre[i+k-1] - left;
+        if (val < mn ) {
+            ans = i + 1;
+            mn = val;
+        }
+    }
+
+    cout<<ans<<endl;
 
 }
